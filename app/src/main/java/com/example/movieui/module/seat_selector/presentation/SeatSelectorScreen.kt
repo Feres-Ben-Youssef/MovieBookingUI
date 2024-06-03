@@ -204,7 +204,12 @@ fun SeatSelectorScreen(
                                 backgroundColor = Yellow,
                             ),
                             shape = RoundedCornerShape(32.dp),
-                            onClick = {},
+                            onClick = {
+                                val seatNumbersString = selectedSeat.joinToString(",")
+                                val selectedDateString = selectedDate.value.toString()
+                                val selectedTimeString = selectedTime.value ?: ""
+                                navController.navigate("movie_pass_screen/$seatNumbersString/$selectedDateString/$selectedTimeString")
+                            },
                         ) {
                             Text("Continue")
                         }

@@ -9,14 +9,16 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.movieui.module.AppDatabase
-import com.example.movieui.module.UserViewModel
-import com.example.movieui.module.UserViewModelFactory
+import com.example.movieui.module.user.UserViewModel
+import com.example.movieui.module.user.UserViewModelFactory
 import com.example.movieui.module.account.presentation.AccountCreationScreen
 import com.example.movieui.module.account.presentation.LoginScreen
 import com.example.movieui.module.detail.presentation.DetailScreen
 import com.example.movieui.module.home.model.nowPlayingMovie
 import com.example.movieui.module.home.presentation.HomeScreen
+import com.example.movieui.module.moviepass.MoviePassScreen
 import com.example.movieui.module.seat_selector.presentation.SeatSelectorScreen
+import java.time.LocalDate
 
 object AppRoute {
 
@@ -51,6 +53,24 @@ object AppRoute {
             composable(AppRouteName.Login) {
                 LoginScreen(navController = navController, userViewModel = userViewModel)
             }
+            composable(
+                    "movie_pass_screen/{seatNumbers}/{selectedDate}/{selectedTime}",
+            arguments = listOf(
+                navArgument("seatNumbers") { type = NavType.StringType },
+                navArgument("selectedDate") { type = NavType.StringType },
+                navArgument("selectedTime") { type = NavType.StringType }
+            )
+            ) { backStackEntry ->
+            val seatNumbers = backStackEntry.arguments?.getString("seatNumbers")?.split(",") ?: emptyList()
+            val selectedDate = backStackEntry.arguments?.getString("selectedDate")?.let { LocalDate.parse(it) }
+            val selectedTime = backStackEntry.arguments?.getString("selectedTime")
+            MoviePassScreen(
+                navController = navController,
+                seatNumbers = seatNumbers,
+                selectedDate = selectedDate,
+                selectedTime = selectedTime
+            )
+        }
         }
     }}
 

@@ -1,8 +1,10 @@
-package com.example.movieui.module
+package com.example.movieui.module.user
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.movieui.module.user.User
+import com.example.movieui.module.user.UserDao
 import kotlinx.coroutines.launch
 
 class UserViewModel(private val userDao: UserDao) : ViewModel() {
