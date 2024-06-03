@@ -22,6 +22,7 @@ import com.example.movieui.core.theme.Yellow
 import com.example.movieui.module.user.UserViewModel
 
 @Composable
+
 fun LoginScreen(navController: NavHostController, userViewModel: UserViewModel) {
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -51,8 +52,6 @@ fun LoginScreen(navController: NavHostController, userViewModel: UserViewModel) 
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
-
-
                     TextField(
                         value = username,
                         onValueChange = { username = it },

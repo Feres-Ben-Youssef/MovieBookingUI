@@ -5,7 +5,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.movieui.module.user.User
 import com.example.movieui.module.user.UserDao
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class UserViewModel(private val userDao: UserDao) : ViewModel() {
 
@@ -31,21 +33,15 @@ class UserViewModel(private val userDao: UserDao) : ViewModel() {
         }
     }
 
-    fun loginUser(username: String, password: String, callback: (Boolean) -> Unit) {
+    fun loginUser(username: String, password: String, callback: (User?) -> Unit) {
         viewModelScope.launch {
-            try {
-                Log.d("UserViewModel", "Attempting login for user: $username")
-                val user = userDao.getUserByUsername(username)
-                if (user != null && user.password == password) {
-                    Log.d("UserViewModel", "Login successful for: $username")
-                    callback(true)
-                } else {
-                    Log.e("UserViewModel", "Login failed for: $username")
-                    callback(false)
-                }
-            } catch (e: Exception) {
-                Log.e("UserViewModel", "Error logging in", e)
-                callback(false)
+            val user = withContext(Dispatchers.IO) {
+                userDao.getUserByUsername(username)
+            }
+            if (user != null && user.password == password) {
+                callback(user)
+            } else {
+                callback(null)
             }
         }
     }
