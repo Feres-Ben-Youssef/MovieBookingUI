@@ -1,9 +1,10 @@
-package com.example.movieui.module
+package com.example.movieui.module.user
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.example.movieui.module.user.User
 
 @Dao
 interface UserDao {

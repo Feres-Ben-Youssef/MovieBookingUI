@@ -1,4 +1,4 @@
-package com.example.movieui.module
+package com.example.movieui.module.user
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
