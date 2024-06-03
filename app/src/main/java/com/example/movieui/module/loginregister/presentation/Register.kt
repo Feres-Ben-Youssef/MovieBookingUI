@@ -12,6 +12,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -55,6 +56,7 @@ fun AccountCreationScreen(navController: NavHostController, userViewModel: UserV
                         value = username,
                         onValueChange = { username = it },
                         label = { Text("Username") },
+                        textStyle = TextStyle(color = Color.Black), // Set the text color to black
                         colors = TextFieldDefaults.textFieldColors(
                             backgroundColor = Color.White,
                             focusedIndicatorColor = Yellow,
@@ -70,6 +72,7 @@ fun AccountCreationScreen(navController: NavHostController, userViewModel: UserV
                         value = password,
                         onValueChange = { password = it },
                         label = { Text("Password") },
+                        textStyle = TextStyle(color = Color.Black), // Set the text color to black
                         visualTransformation = PasswordVisualTransformation(),
                         colors = TextFieldDefaults.textFieldColors(
                             backgroundColor = Color.White,
@@ -86,6 +89,7 @@ fun AccountCreationScreen(navController: NavHostController, userViewModel: UserV
                         value = confirmPassword,
                         onValueChange = { confirmPassword = it },
                         label = { Text("Confirm Password") },
+                        textStyle = TextStyle(color = Color.Black), // Set the text color to black
                         visualTransformation = PasswordVisualTransformation(),
                         colors = TextFieldDefaults.textFieldColors(
                             backgroundColor = Color.White,
