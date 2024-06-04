@@ -54,23 +54,22 @@ object AppRoute {
                 LoginScreen(navController = navController, userViewModel = userViewModel)
             }
             composable(
-                    "movie_pass_screen/{seatNumbers}/{selectedDate}/{selectedTime}",
-            arguments = listOf(
-                navArgument("seatNumbers") { type = NavType.StringType },
-                navArgument("selectedDate") { type = NavType.StringType },
-                navArgument("selectedTime") { type = NavType.StringType }
-            )
+                "movie_pass_screen/{seatNumbers}/{selectedDate}/{selectedTime}",
+                arguments = listOf(
+                    navArgument("seatNumbers") { type = NavType.StringType },
+                    navArgument("selectedDate") { type = NavType.StringType },
+                    navArgument("selectedTime") { type = NavType.StringType }
+                )
             ) { backStackEntry ->
-            val seatNumbers = backStackEntry.arguments?.getString("seatNumbers")?.split(",") ?: emptyList()
-            val selectedDate = backStackEntry.arguments?.getString("selectedDate")?.let { LocalDate.parse(it) }
-            val selectedTime = backStackEntry.arguments?.getString("selectedTime")
-            MoviePassScreen(
-                navController = navController,
-                seatNumbers = seatNumbers,
-                selectedDate = selectedDate,
-                selectedTime = selectedTime
-            )
-        }
+                val seatNumbers = backStackEntry.arguments?.getString("seatNumbers")?.split(",") ?: emptyList()
+                val selectedDate = backStackEntry.arguments?.getString("selectedDate")?.let { LocalDate.parse(it) }
+                val selectedTime = backStackEntry.arguments?.getString("selectedTime")
+                MoviePassScreen(
+                    navController = navController,
+                    seatNumbers = seatNumbers,
+                    selectedDate = selectedDate,
+                    selectedTime = selectedTime
+                )
+            }
         }
     }}
-

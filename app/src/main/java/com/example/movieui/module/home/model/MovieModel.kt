@@ -79,4 +79,3 @@ val upcoming = listOf(
         isPlaying = false
     )
 )
-

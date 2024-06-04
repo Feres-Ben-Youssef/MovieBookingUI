@@ -4,7 +4,6 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -15,9 +14,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.movieui.R // Adjust the import based on your project structure
+import com.example.movieui.core.route.AppRouteName
 import com.example.movieui.core.theme.LightGray
 import com.example.movieui.core.theme.Yellow
 import com.google.zxing.BarcodeFormat
@@ -38,6 +39,7 @@ fun MoviePassScreen(
             modifier = Modifier
                 .padding(padding)
                 .fillMaxSize()
+
         ) {
             Row(
                 modifier = Modifier.padding(
@@ -68,17 +70,7 @@ fun MoviePassScreen(
                     modifier = Modifier.padding(16.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    /*Image(
-                        painter = painterResource(id = R.drawable.movie_poster), // Replace with your movie poster image resource
-                        contentDescription = "Movie Poster",
-                        modifier = Modifier
-                            .height(150.dp)
-                            .fillMaxWidth()
-                            .clip(RoundedCornerShape(8.dp))
-                    )*/
-                    Spacer(modifier = Modifier.height(16.dp))
-                    Text("Movie Title", style = MaterialTheme.typography.h6)
-                    Spacer(modifier = Modifier.height(8.dp))
+                     Spacer(modifier = Modifier.height(8.dp))
                     Text("Seat Numbers: ${seatNumbers.joinToString(", ")}", style = MaterialTheme.typography.body1)
                     Text("Date: $selectedDate", style = MaterialTheme.typography.body1)
                     Text("Time: $selectedTime", style = MaterialTheme.typography.body1)
@@ -107,7 +99,9 @@ fun MoviePassScreen(
                 ),
                 shape = RoundedCornerShape(32.dp),
                 onClick = {
-                    navController.navigate("home_screen")
+                    navController.navigate(AppRouteName.Home) {
+                        popUpTo(AppRouteName.Home) { inclusive = true }
+                    }
                 },
             ) {
                 Text("Home")
